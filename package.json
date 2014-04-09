@@ -1,0 +1,19 @@
+{
+  "name": "hackfsm",
+  "version": "0.0.0",
+  "description": "hackfsm =======",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/stevenchoi/hackfsm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stevenchoi/hackfsm/issues"
+  },
+  "homepage": "https://github.com/stevenchoi/hackfsm"
+}
