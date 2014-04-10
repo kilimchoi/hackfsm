@@ -41,6 +41,13 @@ module.exports = function(grunt) {
             },
             globals: {}
         },
+        sass: {
+            dist : {
+                files : {
+                    'dist/app.css' : 'src/**/*.scss'
+                }
+            }
+        },
         watch: {
              scripts: {
                 files: 'dist/hackfsm.js',
@@ -54,6 +61,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-jade');
+    grunt.loadNpmTasks('grunt-contrib-sass');
     // the default task can be run just by typing "grunt" on the command line
-    grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'jade']);
+    grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'jade', 'sass']);
 }
