@@ -1,0 +1,32 @@
+// Place all the styles related to the search controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+/* Global Reset */
+
+* { 
+	margin: 0;
+	padding: 0;
+}
+
+html, body { 
+	height: 100%;
+}
+
+h1 { 
+	text-align: center;
+	margin-top: 200px;
+}
+
+#searchBox { 
+	background-color: #fff;
+	margin: 0 auto;
+	display: table;
+}
+
+#searchInputBox { 
+	border-radius: 10px 10px 10px 10px;
+	height: 25px;
+	width: 375px;
+	display: table-cell;
+	vertical-align: middle;
+}
