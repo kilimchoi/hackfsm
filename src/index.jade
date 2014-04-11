@@ -26,6 +26,12 @@ body
                         .small-2.columns
                             a.button.postfix
                                | Search
+    .row#container
+        - for (var i = 0; i < 100; ++i) {
+          - var categories = 'abstract animals business cats city food nightlife fashion people nature sports technics transport'.split(' ')
+          a(href="#").item
+            img.th(src="http://lorempixel.com/200/300/#{categories[i%13]}/#{i % 10 + 1}/")
+        - }
     script(src='../bower_components/masonry/dist/masonry.pkgd.min.js')
     script(src='../bower_components/angular/angular.min.js')
     script(src='hackfsm.min.js')
