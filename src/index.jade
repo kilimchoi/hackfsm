@@ -1,6 +1,6 @@
 doctype html
 <!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
-html(lang="en" class="no-js")
+html(lang="en" class="no-js" ng-app="galleryApp")
     head
         meta(charset="utf-8")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
@@ -13,7 +13,10 @@ html(lang="en" class="no-js")
 
         <!-- If you are using the gem version, you need this only -->
         link(rel="stylesheet" href="app.css")
-body
+        script(src='../bower_components/masonry/dist/masonry.pkgd.min.js')
+        script(src='../bower_components/angular/angular.js')
+        script(src='hackfsm.min.js')
+body(ng-controller="GalleryGridCtrl")
     .row
         .row
             .form
@@ -27,11 +30,13 @@ body
                             a.button.postfix
                                | Search
     .row#container
-        - for (var i = 0; i < 100; ++i) {
-          - var categories = 'abstract animals business cats city food nightlife fashion people nature sports technics transport'.split(' ')
-          a(href="#").item
-            img.th(src="http://lorempixel.com/200/300/#{categories[i%13]}/#{i % 10 + 1}/")
-        - }
-    script(src='../bower_components/masonry/dist/masonry.pkgd.min.js')
-    script(src='../bower_components/angular/angular.min.js')
-    script(src='hackfsm.min.js')
+            a(href="{{item.url}}" ng-repeat="item in items")
+                img(src="{{item.url}}")
+        a(href="#")
+            img(src="")
+        //-- for (var i = 0; i < 100; ++i) {
+          //-- var categories = 'abstract animals business cats city food nightlife fashion people nature sports technics transport'.split(' ')
+          //-a(href="#").item
+            //-img.th(src="http://lorempixel.com/200/300/#{categories[i%13]}/#{i % 10 + 1}/")
+        //-- }
+
