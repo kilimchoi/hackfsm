@@ -1,9 +1,16 @@
 <html>
 	<%= stylesheet_link_tag "search" %>
 <body>
-	<h1>FSM graph search</h1>
+	<h1>Free Speech Movement Archive Search</h1>
 	<form id="searchBox" action="">
-		<input id="searchInputBox" type="text" x-webkit-speech  placeholder="Search Here" />
+		<div class="row">
+			<div class="large-8 columns">
+				<input id="searchInputBox" type="text" x-webkit-speech  placeholder="Search Here" />
+			</div>
+			<div class="small-3 columns">
+				<%= submit_tag "Search", :name => nil, :class => 'button [tiny small large] radius success' %> 
+			</div>
+		</div>
 	</form>
 </body>
 </html>

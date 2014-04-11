@@ -29,6 +29,14 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'ots'
 
+gem "searchkick"
+
+gem 'rsolr'
+
+gem 'protected_attributes'
+
+gem 'foundation-rails'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
