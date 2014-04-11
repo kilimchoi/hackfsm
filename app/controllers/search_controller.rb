@@ -19,20 +19,17 @@ class SearchController < ApplicationController
 		uri.query = URI.encode_www_form(params)
 			response = Net::HTTP.get(uri)
 		docs_parsed = JSON.parse(JSON.pretty_generate(JSON.parse(response)["response"]["docs"]))
-		@item = create_item(docs_parsed)
-		# Below grabs the information from the document array. 
-		return @item
-		'''docs_parsed.each do |ele| 
-			puts ele["fsmTypeOfResource"]
-			puts ele["fsmRelatedTitle"]
-			puts ele["fsmRelatedIdentifier"]
-		end'''
+		@item_arr = create_item(docs_parsed)
+		# Below returns the item from the API. 
+		return @item_arr
 	end
 
 	def result 
 		@query_statement = params[:q]
+		# Handle the case when query statement is empty. 
 		puts "Hello World"
 		puts @query_statement
 		@result = query(@query_statement)
+		# Handle the case when result is empty. 
 	end
 end

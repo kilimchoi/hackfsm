@@ -1,12 +1,14 @@
 <html>
 	<body>
-		<div><%= @result.creator %></div>
-		<div><%= @result.typeOfResource %></div>
-		<div><%= @result.relatedTitle %></div>
-		<div><%= @result.dateCreated %></div>
-		<div><%= @result.identifier %></div>
-		<div><%= @result.url %></div>
-		<div><%= @result.title %></div>
-		<div><%= @result.notes %></div>
+		<% @result.each do |res| %>
+			<div><%= res.creator %></div>
+			<div><%= res.typeOfResource %></div>
+			<div><%= res.relatedTitle %></div>
+			<div><%= res.dateCreated %></div>
+			<div><%= res.identifier %></div>
+			<div><%= res.url %></div>
+			<div><%= res.title %></div>
+			<div><%= res.notes %></div>
+		<% end %>
 	</body>
 </html>

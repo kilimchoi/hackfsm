@@ -1,6 +1,7 @@
 module SearchHelper
 	def create_item(item_attributes)
 		item = Items.new
+		array = Array.new
 		for attribute in item_attributes
 			item.typeOfResource = attribute['fsmTypeOfResource']
 			item.relatedTitle = attribute['fsmRelatedTitle']
@@ -10,7 +11,8 @@ module SearchHelper
 			item.url = attribute['fsmImageUrl'] # or TeiUrl
 			item.title = attribute['fsmTitle']
 			item.notes = attribute['fsmNote']
+			array.push(item)
 		end
-		return item
+		return array
 	 end
 end
