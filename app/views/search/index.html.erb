@@ -1,20 +1,11 @@
 <html>
 	<%= stylesheet_link_tag "search" %>
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script>
-		$(document).ready(function()
-		{
-		    $('#q').bind('webkitspeechchange',function()
-		    {	
-		    	console.log("enters");
-		        $('#searchBox').submit();
-		    });
-		});
-	</script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/spin.js/1.2.7/spin.min.js"></script>
 <body>
 	<title>FSM Archive Search</title>
 	<h1>FSM Archive Search</h1>
 	<form id="searchBox" action="result">
+		<div id="spinner"></div>
 		<div class="row">
 			<div class="small-9 columns">
 				<%= text_field_tag 'q', params[:q],
@@ -26,10 +17,56 @@
 				
 			</div>
 			<div class="small-3 columns">
-				<%= submit_tag "Search", :name => nil, :class => 'button [tiny small large] radius success'   %> 
+				<%= submit_tag "Search", :id => "searchButton", :class => 'button [tiny small large] radius success'   %> 
 			</div>
 		</div>
 	</form>
 	<p class="text-center" style="font-size: 15px">Find Articles, Photos, Vidoes related to the Free Speech Movement.</p>
+
+	<!-- Load Jquery -->
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+	<script>
+		// Start of voice recognition Search 
+		$(document).ready(function()
+		{
+		    $('#q').bind('webkitspeechchange',function()
+		    {	
+		    	console.log("enters");
+		        $('#searchBox').submit();
+		    });
+		});
+        // End of voice recognition Search
+
+        // Start of spinning wheel 
+		var opts = {
+			lines: 10, // The number of lines to draw
+			length: 7, // The length of each line
+			width: 4, // The line thickness
+			radius: 10, // The radius of the inner circle
+			corners: 1, // Corner roundness (0..1)
+			rotate: 0, // The rotation offset
+			color: '#000', // #rgb or #rrggbb
+			speed: 1, // Rounds per second
+			trail: 60, // Afterglow percentage
+			shadow: false, // Whether to render a shadow
+			hwaccel: false, // Whether to use hardware acceleration
+			className: 'spinner', // The CSS class to assign to the spinner
+			zIndex: 2e9, // The z-index (defaults to 2000000000)
+			top: 'auto', // Top position relative to parent in px
+			left: 'auto' // Left position relative to parent in px
+		};
+		var target = document.getElementById("spinner");
+		var spinner = new Spinner(opts).spin(target);
+		$("#spinner").hide();
+		// End of spinning wheel 
+
+		$("#searchButton").on("click" , function() {
+			$("#spinner").show();
+		});
+
+	</script>
+
+
 </body>
 </html>
