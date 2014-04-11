@@ -1,16 +1,23 @@
 <html>
 	<%= stylesheet_link_tag "search" %>
 <body>
-	<h1>Free Speech Movement Archive Search</h1>
-	<form id="searchBox" action="">
+	<h1>FSM Archive Search</h1>
+	<form id="searchBox" action="result">
 		<div class="row">
-			<div class="large-8 columns">
-				<input id="searchInputBox" type="text" x-webkit-speech  placeholder="Search Here" />
+			<div class="small-9 columns">
+				<%= text_field_tag 'q', params[:q],
+                     {:size              => 40,
+                      'x-webkit-speech'  => '', 
+                      'x-webkit-grammar' => 'builtin:search',
+                  	  :placeholder => "Search Here"
+                  	 } %>
+				
 			</div>
 			<div class="small-3 columns">
-				<%= submit_tag "Search", :name => nil, :class => 'button [tiny small large] radius success' %> 
+				<%= submit_tag "Search", :name => nil, :class => 'button [tiny small large] radius success'   %> 
 			</div>
 		</div>
 	</form>
+	<p class="text-center" style="font-size: 15px">Find Articles, Photos, Vidoes related to the Free Speech Movement.</p>
 </body>
 </html>

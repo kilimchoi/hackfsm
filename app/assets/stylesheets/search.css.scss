@@ -12,10 +12,10 @@ html, body {
 	height: 100%;
 }
 
-
 h1 { 
 	text-align: center;
-	margin-top: 200px;
+	margin-top: 170px;
+	margin-bottom: 35px;
 }
 
 #searchBox { 
@@ -24,10 +24,17 @@ h1 {
 	display: table;
 }
 
-#searchInputBox { 
+#q { 
 	border-radius: 10px 10px 10px 10px;
 	height: 45px;
-	width: 455px;
+	width: 425px;
 	display: table-cell;
 	vertical-align: middle;
+}
+
+@media screen and (max-width: 575px) {
+	#searchInputBox { 
+		width: 107%;
+	}
+
 }
