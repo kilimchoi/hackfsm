@@ -24,7 +24,11 @@
 	<p class="text-center" style="font-size: 15px">Find Articles, Photos, Vidoes related to the Free Speech Movement.</p>
     <div class="row" masonry>
         <div class="masonry-brick" ng-repeat="brick in bricks">
-            <a ng-href="{{ brick.fsmImageUrl[0] }}">
+            <audio ng-if="brick.audio_id" controls>
+                <source ng-src="{{trustAsResourceUrl(brick.url)}}" type="audio/mp3"></source>
+            </audio>
+
+            <a ng-if="brick.fsmImageUrl" ng-href="{{ brick.fsmImageUrl[0] }}">
                 <img ng-src="{{ brick.fsmImageUrl[0] }}" alt="Image"/>
             </a>
         </div>
@@ -34,7 +38,7 @@
 	<!-- Load Jquery -->
 	<!--<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 -->
-	// <script>
+	<script>
  //        // Start of spinning wheel 
 	// 	var opts = {
 	// 		lines: 10, // The number of lines to draw

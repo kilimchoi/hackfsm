@@ -1,7 +1,7 @@
 <%## Place all the behaviors and hooks related to the matching controller here.%>
 <%## All this logic will automatically be available in application.js.%>
 <%## You can use CoffeeScript in this file: http://coffeescript.org/%>
-angular.module('galleryApp', ['wu.masonry']).controller('GalleryGridCtrl', ['$scope', '$http', function($scope, $http) {
+angular.module('galleryApp', ['wu.masonry']).controller('GalleryGridCtrl', ['$scope', '$http', '$sce', function($scope, $http, $sce) {
      $scope.bricks =[];
      $scope.search = function(){
           $http.get('/result').success(function(data) {
@@ -9,7 +9,11 @@ angular.module('galleryApp', ['wu.masonry']).controller('GalleryGridCtrl', ['$sc
             $scope.bricks = data;
           });
 
-     }
+     };
+    $scope.trustAsResourceUrl = function(url){
+        debugger
+        return $sce.trustAsResourceUrl(url);
+    };
 }]);
 
 

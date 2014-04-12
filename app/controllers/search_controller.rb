@@ -102,7 +102,7 @@ class SearchController < ApplicationController
         @images_only_raw = @images_only.to_json
         respond_to do |format|
             #format.json { render json: @images_only }
-            format.html { render json: @images_only_raw }
+            format.html { render json: (@images_only + @audios + @fsm_images_texts).to_json }
             format.js 
         end
 	end
