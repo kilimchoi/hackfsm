@@ -7,12 +7,13 @@
 
 /* Controllers */
 
-var galleryApp = angular.module('galleryApp', []);
+//var galleryApp = angular.module('galleryApp', []);
+//var masonry = angular.module('galleryApp', ['wu.masonry']);
 
-galleryApp.controller('GalleryGridCtrl', ['$scope', '$http', function($scope, $http) {
+angular.module('galleryApp', ['wu.masonry']).controller('GalleryGridCtrl', ['$scope', '$http', function($scope, $http) {
 
-  $scope.items = [];
+  $scope.bricks = [];
   $http.get('data/images.json').success(function(data) {
-    $scope.items = data;
+    $scope.bricks = data;
   });
 }]);

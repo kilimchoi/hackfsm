@@ -1,6 +1,6 @@
 doctype html
 <!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
-html(lang="en" class="no-js" ng-app="galleryApp")
+html.container(lang="en" class="no-js" ng-app="galleryApp")
     head
         meta(charset="utf-8")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
@@ -13,8 +13,11 @@ html(lang="en" class="no-js" ng-app="galleryApp")
 
         <!-- If you are using the gem version, you need this only -->
         link(rel="stylesheet" href="app.css")
+        script(src='../bower_components/jquery/jquery.min.js')
         script(src='../bower_components/masonry/dist/masonry.pkgd.min.js')
+        script(src='../bower_components/imagesloaded/imagesloaded.js')
         script(src='../bower_components/angular/angular.js')
+        script(src='../bower_components/angular-masonry/angular-masonry.js')
         script(src='hackfsm.min.js')
 body(ng-controller="GalleryGridCtrl")
     .row
@@ -29,9 +32,14 @@ body(ng-controller="GalleryGridCtrl")
                         .small-2.columns
                             a.button.postfix
                                | Search
-    .row#container
-            a(href="{{item.url}}" ng-repeat="item in items")
-                img(src="{{item.url}}")
+    .row(masonry)
+        div.masonry-brick(ng-repeat="brick in bricks")
+            a(ng-href="{{ brick.url }}")
+                img(ng-src="{{ brick.url }}" alt="Image")
+
+    //-.row#container
+            //-a(href="{{item.url}}" ng-repeat="item in items")
+                //-img(src="{{item.url}}")
         a(href="#")
             img(src="")
         //-- for (var i = 0; i < 100; ++i) {

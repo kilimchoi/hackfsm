@@ -1,2 +1,9 @@
 //add customizations here
 .item{ width: 25%; height: 300px; }
+.masonry-brick {
+    margin: 1em;
+    display: none;
+}
+.masonry-brick.loaded {
+    display: block;
+}
