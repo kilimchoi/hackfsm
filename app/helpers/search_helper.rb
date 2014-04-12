@@ -1,18 +1,32 @@
 module SearchHelper
-	def create_item(item_attributes)
-		item = Items.new
-		array = Array.new
-		for attribute in item_attributes
-			item.typeOfResource = attribute['fsmTypeOfResource']
-			item.relatedTitle = attribute['fsmRelatedTitle']
-			item.creator = attribute['fsmCreator']
-			item.dateCreated = attribute['fsmDateCreated']
-			item.identifier = attribute['fsmIdentifier']
-			item.url = attribute['fsmImageUrl'] # or TeiUrl
-			item.title = attribute['fsmTitle']
-			item.notes = attribute['fsmNote']
-			array.push(item)
+	def create_fsm_sources(fsm_sources)
+		@item = Items.new
+		@array = Array.new
+		for source in fsm_sources
+			@item.typeOfResource = source['fsmTypeOfResource']
+			@item.relatedTitle = source['fsmRelatedTitle']
+			@item.creator = source['fsmCreator']
+			@item.dateCreated = source['fsmDateCreated']
+			@item.identifier = source['fsmIdentifier']
+			@item.url = source['fsmImageUrl'] # or TeiUrl
+			@item.title = source['fsmTitle']
+			@item.notes = source['fsmNote']
+			@array.push(@item)
 		end
-		return array
+		return @array
+	 end
+
+	 def create_audio_sources(audio_sources)
+	 	@audio = Audio.new
+	 	@array = Array.new
+	 	for audio_source in audio_sources
+	 		for source in audio_source['audio_files']
+	 			@audio.url = source['url']
+	 			@audio.filename = source['filename']
+	 			@audio.audio_id = source['id']
+	 			@array.push(@audio)
+	 		end
+	 	end
+	 	return @array
 	 end
 end

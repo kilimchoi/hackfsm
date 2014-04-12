@@ -1,6 +1,6 @@
 <html>
 	<body>
-		<% @result.each do |res| %>
+		<% @fsm_images_texts.each do |res| %>
 			<div><%= res.creator %></div>
 			<div><%= res.typeOfResource %></div>
 			<div><%= res.relatedTitle %></div>
@@ -9,6 +9,11 @@
 			<div><%= res.url %></div>
 			<div><%= res.title %></div>
 			<div><%= res.notes %></div>
+		<% end %>
+		<% @audios.each do |audio| %> 
+			<div><%= audio.url %></div>
+			<div><%= audio.filename %></div>
+			<div><%= audio.id %></div>
 		<% end %>
 	</body>
 </html>

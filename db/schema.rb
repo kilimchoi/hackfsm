@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140411030711) do
+ActiveRecord::Schema.define(version: 20140412004408) do
+
+  create_table "audios", force: true do |t|
+    t.string   "url"
+    t.string   "filename"
+    t.integer  "audio_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "items", force: true do |t|
     t.string   "creator"
@@ -20,8 +28,8 @@ ActiveRecord::Schema.define(version: 20140411030711) do
     t.string   "dateCreated"
     t.text     "notes"
     t.string   "url"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.string   "relatedTitle"
     t.string   "identifier"
     t.string   "relatedIdentifier"
