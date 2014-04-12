@@ -24,7 +24,8 @@
 	<p class="text-center" style="font-size: 15px">Find Articles, Photos, Vidoes related to the Free Speech Movement.</p>
     <div class="row" masonry>
         <div class="masonry-brick" ng-repeat="brick in bricks">
-            <audio ng-if="brick.audio_id" controls>
+            <img  ng-if="brick.audio_id" src="http://placehold.it/300x200?text=Audio" alt="Image"/>
+            <audio ng-if="brick.audio_id" controls style="position:absolute; bottom: 0;">
                 <source ng-src="{{trustAsResourceUrl(brick.url)}}" type="audio/mp3"></source>
             </audio>
 
