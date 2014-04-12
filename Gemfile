@@ -37,6 +37,10 @@ gem 'foundation-rails'
 
 gem 'nokogiri'
 
+gem 'angularjs-rails'
+
+gem "bower-rails", "~> 0.7.1"
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
