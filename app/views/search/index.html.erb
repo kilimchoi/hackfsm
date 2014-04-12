@@ -27,17 +27,6 @@
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
 	<script>
-		// Start of voice recognition Search 
-		$(document).ready(function()
-		{
-		    $('#q').bind('webkitspeechchange',function()
-		    {	
-		    	console.log("enters");
-		        $('#searchBox').submit();
-		    });
-		});
-        // End of voice recognition Search
-
         // Start of spinning wheel 
 		var opts = {
 			lines: 10, // The number of lines to draw
@@ -60,6 +49,17 @@
 		var spinner = new Spinner(opts).spin(target);
 		$("#spinner").hide();
 		// End of spinning wheel 
+
+		// Start of voice recognition Search 
+		$(document).ready(function()
+		{
+		    $('#q').bind('webkitspeechchange',function()
+		    {	
+		        $('#searchBox').submit();
+		        	$("#spinner").show();
+		    });
+		});
+        // End of voice recognition Search
 
 		$("#searchButton").on("click" , function() {
 			$("#spinner").show();
