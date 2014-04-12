@@ -38,6 +38,8 @@ gem 'foundation-rails'
 gem 'nokogiri'
 
 gem 'angularjs-rails'
+gem 'angular-ujs'
+gem 'debugger'
 
 gem "bower-rails", "~> 0.7.1"
 

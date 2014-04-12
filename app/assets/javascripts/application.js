@@ -15,6 +15,7 @@
 //= require foundation
 //= require turbolinks
 //= require lib
+//= require angular-ujs
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

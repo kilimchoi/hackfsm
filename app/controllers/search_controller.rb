@@ -99,6 +99,12 @@ class SearchController < ApplicationController
 		@html_texts = get_texts_only()
 		#retrieving images that are not TEI-type
 		@images_only = get_images_only()['response']['docs']
+        @images_only_raw = @images_only.to_json
+        respond_to do |format|
+            #format.json { render json: @images_only }
+            format.html { render json: @images_only_raw }
+            format.js 
+        end
 	end
     
 	'''def search_handler 
