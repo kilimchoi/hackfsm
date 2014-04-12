@@ -1,4 +1,3 @@
-require 'ots'
 require 'net/http'
 require 'open-uri'
 require 'json'
