@@ -1,4 +1,3 @@
-require 'ots'
 require 'net/http'
 require 'open-uri'
 require 'json'
@@ -8,21 +7,20 @@ require 'nokogiri'
 class SearchController < ApplicationController
 	include SearchHelper
 	def index
-		#article = OTS.parse("I lived in North Korea for the first 15 years of my life, believing Kim Jong-il was a god. I never doubted it because I didn't know anything else. I could not even imagine life outside of the regime.")
-		#puts article.summarize(percent:50)
-		# Following receives a response from popuparchive. 
-		#puts JSON.pretty_generate(JSON.parse(response.body))
-		#puts get_texts_only()['response']['docs']
-		#get_images_only()
-		#document = Nokogiri::XML(open('input.xml'))
-		#template   = Nokogiri::XML(open('http://content.cdlib.org/xml/ark:/13030/kt5m3nb0sh/'))  	
-		#@text = template.css("text body")
-		#@html_text = @text.to_html
-		#transformed_document = template.transform(document)
-		#File.open('output.html', 'w').write(template)
-		#get_texts_only()['response']['docs'].each do |xml_doc| 
-		#	puts xml_doc["fsmTeiUrl"]
+		# Uncomment the following the make the API requests.
+		#@data = query_from_fsm("*")
+		#@final = Array.new
+		#for hash in @data
+		#	@final << hash
 		#end
+		#File.open('fsmData.yaml', 'w').write(@final)
+
+		#@popup_data = query_from_pop_up_archive_for_audios("*")
+		#@arr = Array.new
+		#for hash in @popup_data
+		#	@arr << hash
+		#end
+		#File.open('popupData.yaml', 'w').write(@arr)
 	end
 
 	def query_from_fsm(query, fl='id')
@@ -33,9 +31,10 @@ class SearchController < ApplicationController
 		uri.query = URI.encode_www_form(params)
 		response = Net::HTTP.get(uri)
 		docs_parsed = JSON.parse(JSON.pretty_generate(JSON.parse(response)["response"]["docs"]))
-		@item_arr = create_fsm_sources(docs_parsed)
+		return docs_parsed
+		#@item_arr = create_fsm_sources(docs_parsed)
 		# Below returns the item from the API. 
-		return @item_arr
+		#return @item_arr
 	end
 
 	def get_texts_only()
@@ -87,34 +86,43 @@ class SearchController < ApplicationController
 		uri.query = URI.encode_www_form(params)
 		request = Net::HTTP::Get.new(uri.request_uri)
 		response = http.request(request)
-		puts JSON.pretty_generate(JSON.parse(response.body))
-		create_audio_sources(JSON.parse(response.body)["results"])
+		return JSON.parse(response.body)
+		
 	end
 
 	def result 
-		@query_statement = params[:q]
 		# Handle the case when query statement is empty. 
-		@audios = query_from_pop_up_archive_for_audios(@query_statement)
-		@fsm_images_texts = query_from_fsm(@query_statement)
+		@query_statement = params[:q]
+		sql = "Select * from Items i where i.title LIKE '%#{@query_statement}%'"
+		@records_array = ActiveRecord::Base.connection.execute(sql)
+		#@audios = query_from_pop_up_archive_for_audios(@query_statement)
+		#@fsm_images_texts = query_from_fsm(@query_statement)
 		# Handle the case when result is empty. 
-		@html_texts = get_texts_only()
+		#@html_texts = get_texts_only()
 		#retrieving images that are not TEI-type
-		@images_only = get_images_only()['response']['docs']
+		#@images_only = get_images_only()['response']['docs']
 	end
     
 	'''def search_handler 
-		# Handling the search for texts
+		# Handling the Basic search
 		text_query = ["article", "articles", "paper", "papers", "text", "texts"]
+		photos_query = ["photos", "photo", "pictures", "picture"]
 		@search_Arr = Array.new
 		@query_statement = params[:q]
+		#sql = "Select * from Items Where "
+		records_array = ActiveRecord::Base.connection.execute(sql)
 		if @query_statement
 			search_Arr << @query_statement.split
-		end
+			for word in search_Arr
+				if word in text_query 
 
-		for word in search_Arr
-			if word in text_query 
+				end
 
+				if word in photos_query
+
+				end
 			end
+
 		end
 	end'''
 end

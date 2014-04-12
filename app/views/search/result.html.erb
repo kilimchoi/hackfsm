@@ -1,28 +1,12 @@
 <html>
 	<body>
-		<!--<% @fsm_images_texts.each do |res| %>
-			<div><%= res.creator %></div>
-			<div><%= res.typeOfResource %></div>
-			<div><%= res.relatedTitle %></div>
-			<div><%= res.dateCreated %></div>
-			<div><%= res.identifier %></div>
-			<div><%= res.url %></div>
-			<div><%= res.title %></div>
-			<div><%= res.notes %></div>
-		<% end %>
-		<% @audios.each do |audio| %> 
-			<div><%= audio.url %></div>
-			<div><%= audio.filename %></div>
-			<div><%= audio.id %></div>
-		<% end %> 
-	    <% @images_only.each do |res| %>
-			<% res["fsmImageUrl"].each do |pic| %> 
-				<%= image_tag pic %>
-			<% end %> 
-		<% end %> -->
-
-		<% @html_texts.each do |text| %> 
-			<div><%= text.html_safe %></div>
+		
+		<% @records_array.each do |record| %>
+			<% if record['url'] %>
+				<% record['url'].split(" ").each do |img| %>
+					<%= image_tag img %>
+				<% end %>
+			<% end %>
 		<% end %>
 	</body>
 </html>
